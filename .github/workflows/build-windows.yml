@@ -9,6 +9,9 @@ on:
       - "VtuberLayers/**"
       - ".github/workflows/build-windows.yml"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -37,9 +40,25 @@ jobs:
             --exclude-module rembg --exclude-module onnxruntime \
             VtuberLayers/vtuber_layers.py
 
-      - name: Publicar o resultado
+      - name: Publicar o resultado (artifact temporario)
         uses: actions/upload-artifact@v4
         with:
           name: VtuberLayers-windows
           path: dist/VtuberLayers.exe
           if-no-files-found: error
+
+      - name: Publicar Release (link fixo)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: vtuberlayers-latest
+          name: VtuberLayers (ultima versao)
+          body: |
+            Executavel do VtuberLayers para Windows, nao precisa instalar Python.
+            Baixe o VtuberLayers.exe abaixo e de dois cliques.
+
+            Observacoes:
+            - A primeira abertura e lenta (o exe se descompacta).
+            - Alguns antivirus dao falso-positivo em exe feito com PyInstaller.
+            - "Remover fundo" automatico nao esta incluido; separe o fundo na mao.
+          files: dist/VtuberLayers.exe
+          make_latest: "true"
