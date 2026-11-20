@@ -1,3 +1,10 @@
 scrcpy/
 logs/
 config.json
+
+# VTuber Layers
+VtuberLayers/.venv/
+VtuberLayers/__pycache__/
+*_camadas.psd
+*_camadas.ora
+*_camadas_png/

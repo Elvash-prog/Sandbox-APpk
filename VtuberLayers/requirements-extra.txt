@@ -1,0 +1,6 @@
+# Opcionais. Se a instalacao falhar, o app continua funcionando:
+#  - sem pytoshop: exporta .ora (abre no Krita/GIMP e vira PSD)
+#  - sem rembg:    o botao "remover fundo" fica desativado
+pytoshop>=1.2
+rembg>=2.0
+onnxruntime>=1.16
